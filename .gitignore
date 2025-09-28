@@ -1,0 +1,15 @@
+   # IntelliJ IDEA
+   .idea/
+   *.iml
+   .idea/workspace.xml
+   .idea/tasks.xml
+   .idea/dataSources/
+   .idea/dataSources.local.xml
+
+   # Maven
+   target/
+   */target/
+   **/target/
+
+   # Archivos compilados
+   *.class
