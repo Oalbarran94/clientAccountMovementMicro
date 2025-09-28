@@ -74,3 +74,6 @@ Puedes usar los siguientes endpoints para verificar la información:
 - "3.4 Ver Estado de Cuenta": usar el `clientId` y ajustar el rango de fechas
 
 
+Repositorio de la solucion: https://github.com/Oalbarran94/clientAccountMovementMicro/tree/main/accounts-service
+
+
