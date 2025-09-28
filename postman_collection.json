@@ -1,0 +1,201 @@
+{
+  "info": {
+    "name": "Bank Microservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Clientes API (8081)",
+      "item": [
+        {
+          "name": "1.1 Crear Cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8081/clientes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["clientes"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Juan Pérez\",\n    \"genre\": \"MALE\",\n    \"age\": 30,\n    \"identification\": \"1234567890\",\n    \"address\": \"Calle Principal 123\",\n    \"phone\": \"555-0123\",\n    \"state\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "1.2 Obtener Cliente",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/clientes/123e4567-e89b-12d3-a456-426614174000",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["clientes", "123e4567-e89b-12d3-a456-426614174000"]
+            },
+            "description": "Reemplazar el UUID con el ID del cliente creado"
+          }
+        },
+        {
+          "name": "1.3 Listar Clientes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/clientes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["clientes"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Cuentas API (8082)",
+      "item": [
+        {
+          "name": "2.1 Crear Cuenta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8082/cuentas",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["cuentas"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountNumber\": \"123456789\",\n    \"accountType\": \"SAVINGS\",\n    \"initialBalance\": 1000.00,\n    \"state\": true,\n    \"clientId\": \"123e4567-e89b-12d3-a456-426614174000\"\n}",
+              "description": "Reemplazar clientId con el ID del cliente creado"
+            }
+          }
+        },
+        {
+          "name": "2.2 Obtener Cuenta",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8082/cuentas/123e4567-e89b-12d3-a456-426614174000",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["cuentas", "123e4567-e89b-12d3-a456-426614174000"],
+              "description": "Reemplazar el UUID con el ID de la cuenta creada"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Movimientos API (8082)",
+      "item": [
+        {
+          "name": "3.1 Crear Movimiento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8082/movimientos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["movimientos"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"accountId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"amount\": 100.00,\n    \"movementType\": \"CREDIT\"\n}",
+              "description": "Reemplazar accountId con el ID de la cuenta creada"
+            }
+          }
+        },
+        {
+          "name": "3.2 Obtener Movimientos por Cuenta",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8082/movimientos/123e4567-e89b-12d3-a456-426614174000",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["movimientos", "123e4567-e89b-12d3-a456-426614174000"],
+              "description": "Reemplazar el UUID con el ID de la cuenta"
+            }
+          }
+        },
+        {
+          "name": "3.3 Obtener Movimientos por Rango",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8082/movimientos/123e4567-e89b-12d3-a456-426614174000/range?from=2024-01-01T00:00:00Z&to=2024-12-31T23:59:59Z",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["movimientos", "123e4567-e89b-12d3-a456-426614174000", "range"],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2024-01-01T00:00:00Z"
+                },
+                {
+                  "key": "to",
+                  "value": "2024-12-31T23:59:59Z"
+                }
+              ],
+              "description": "Reemplazar el UUID con el ID de la cuenta"
+            }
+          }
+        },
+        {
+          "name": "3.4 Ver Estado de Cuenta",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8082/movimientos/reportes?clientId=123e4567-e89b-12d3-a456-426614174000&startDate=2024-01-01T00:00:00Z&endDate=2024-12-31T23:59:59Z",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8082",
+              "path": ["movimientos", "reportes"],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "123e4567-e89b-12d3-a456-426614174000"
+                },
+                {
+                  "key": "startDate",
+                  "value": "2024-01-01T00:00:00Z"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2024-12-31T23:59:59Z"
+                }
+              ],
+              "description": "Reemplazar clientId con el ID del cliente"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
